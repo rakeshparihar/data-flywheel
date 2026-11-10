@@ -1,0 +1,30 @@
+[project]
+name = "data-flywheel"
+version = "0.1.0"
+description = "Data quality loop for product images: near-duplicate detection, cluster QA, drift checks and active labeling"
+requires-python = ">=3.11,<3.15"
+dependencies = [
+  "torch>=2.3",
+  "transformers>=4.45",
+  "datasets>=2.20",
+  "faiss-cpu>=1.8",
+  "imagehash>=4.3",
+  "scikit-learn>=1.4",
+  "numpy>=1.26",
+  "pillow>=10",
+  "sentencepiece>=0.2",
+  "protobuf>=4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
