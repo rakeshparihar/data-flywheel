@@ -1,0 +1,20 @@
+// Eraser flowchart source. Paste into an Eraser diagram (Flow chart).
+direction right
+
+New batch [shape: oval, icon: upload]
+Encoder [icon: cpu, label: "SigLIP encoder (frozen, cached)"]
+pHash [icon: hash]
+Duplicate cascade [icon: copy]
+Label QA [icon: check-square, label: "Cluster label QA"]
+Drift test [icon: activity, label: "Classifier two-sample test"]
+Active labeling [icon: target, label: "Uncertainty + diversity selection"]
+Labelers [shape: oval, icon: users]
+Training set [shape: cylinder, icon: database]
+
+New batch > pHash > Duplicate cascade
+New batch > Encoder > Duplicate cascade
+Encoder > Label QA
+Encoder > Drift test
+Encoder > Active labeling > Labelers > Training set
+Duplicate cascade > Training set: drop duplicates
+Label QA > Labelers: suspects to review

@@ -1,0 +1,15 @@
+// Eraser cloud-architecture source. Paste into an Eraser diagram (Cloud architecture).
+direction right
+
+Object store [icon: aws-s3, label: "Image uploads"]
+Queue [icon: aws-sqs, label: "New-image events"]
+Embed workers [icon: gpu, label: "Embedding workers"]
+Vector index [icon: database, label: "Faiss IVF-PQ index"]
+Checks [icon: settings, label: "Dedupe, QA, drift jobs"]
+Labeling tool [icon: edit, label: "Labeling tool"]
+Dashboard [icon: grafana]
+
+Object store > Queue > Embed workers > Vector index
+Vector index > Checks
+Checks > Labeling tool: suspects and picks
+Checks > Dashboard: drift AUC, duplicate rate
