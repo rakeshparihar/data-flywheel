@@ -2,6 +2,17 @@
 
 The quality loop for a product-image training set: catch near-duplicates, find wrong labels without ground truth, detect when a new batch looks different, and choose which images to label next. All four checks run on one set of SigLIP embeddings, and each is measured against problems planted on purpose, so its numbers can be trusted.
 
+## Demo
+
+![One planted near-duplicate of each type, and which method caught it](docs/img/duplicates.png)
+
+![Images the cluster check flagged as mislabelled: five real label errors and three false alarms](docs/img/label_qa.png)
+
+What the checks actually flagged, rendered by `scripts/make_gallery.py` from the same images, seed and embeddings as `evals/run_eval.py`.
+
+- **Top:** one planted near-duplicate of each type, and which method caught it at the tuned rule (pHash distance of 2 or less, or cosine of 0.95 or more).
+- **Bottom:** images the cluster check flagged as mislabelled without seeing the true labels. Five really were flipped, and three were false alarms. Overall, 24 of its 58 flags are real errors (41% precision).
+
 ## Results
 
 1,000 real catalog photos from a public fashion dataset, plus 500 near-duplicates made from them (six types, labelled). CPU only: embedding took 4.2 minutes (6 images/s), and pHash took 0.2 s.
